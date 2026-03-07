@@ -1,0 +1,36 @@
+{
+	"ui": {
+		"showLineNumbers": false,
+		"showModelInfoInChat": true,
+		"logLevel": "info" // see the "status updates" as the model works through complex multi-step tasks, which makes the "waiting" period feel much shorter and more transparent
+	},
+	"tools": {
+		"shell": {
+			"showColor": true
+		}
+	},
+	"experimental": {
+		"plan": true
+	},
+	"context": {
+		"fileName": ["GEMINI.md", "CONTEXT.md", "AGENT.md"]
+	},
+	"general": {
+		"sessionRetention": {
+			"enabled": true,
+			"maxAge": "7d",
+			"protectedSessions": [
+				"prepare-articles-data",
+				"prepare-blog-posts-data",
+				"prepare-events-data-intermediate",
+				"brainstorming-analyses",
+				"brainstorming-docker-jupyter-kernel",
+				"brainstorming-content-engagement-analysis",
+				"brainstorming-ds-basics",
+				"review-0-content-engagement",
+				"review-1-content-engagement-anal-all",
+				"review-2-content-engagement-articles"
+			]
+		}
+	}
+}
