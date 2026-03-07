@@ -1,0 +1,55 @@
+# --- Git ---
+.git
+.gitignore
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# --- Local Secrets / Environment ---
+.env
+.env.*
+secrets.json
+.gemini_config
+
+# --- Operating System ---
+.DS_Store
+Thumbs.db
+
+# --- IDEs ---
+.vscode/
+.idea/
+
+# --- Project Specific Data ---
+# We use docker-compose volumes to map these that are needed from the host,
+# so we don't need them baked into the image.
+data_raw/
+data_raw_dummy/
+data_temp/
+data_processed/
+data_processed_dummy/
+ETL/
+data_science/
+data_get/WixVeloCode/
+
+# --- Jupyter ---
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# --- Documentation / Setup ---
+README.md
+*.md
+.pre-commit-config.yaml
+requirements_general.txt
+.gemini/
+assets/
+data_science_brainstorming/

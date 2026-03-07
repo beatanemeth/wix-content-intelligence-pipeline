@@ -1,0 +1,8 @@
+FROM jupyter/datascience-notebook:latest
+
+# Install extra libraries
+COPY requirements_jupyter.txt .
+RUN pip install --no-cache-dir -r requirements_jupyter.txt
+
+# Jupyter expects to work in this directory
+WORKDIR /home/jovyan/work

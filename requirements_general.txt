@@ -1,0 +1,4 @@
+# Jupyter Cleanup & Git Hygiene
+
+nbstripout
+pre-commit

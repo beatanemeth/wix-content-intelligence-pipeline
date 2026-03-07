@@ -1,0 +1,6 @@
+# Specific Dependencies for the Jupyter Notebook
+# which are not included in the Docker image but are required for the notebook to run properly.
+
+jellyfish
+beautifulsoup4
+import-ipynb

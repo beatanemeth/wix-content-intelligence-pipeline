@@ -1,0 +1,49 @@
+# --- Python Base ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# --- Local Secrets / Environment ---
+.env
+.env.local
+secrets.json
+
+# --- Operating System ---
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# --- IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Project Specific Files ---
+data_raw/
+data_temp/
+data_processed/
+data_science_brainstorming/

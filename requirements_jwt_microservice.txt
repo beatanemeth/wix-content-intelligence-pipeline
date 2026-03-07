@@ -1,0 +1,7 @@
+# Specific Dependencies for the JWT Microservice
+
+fastapi
+uvicorn
+requests
+pyjwt
+python-dotenv

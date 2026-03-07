@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  jwt_microservice:
+    build:
+      context: .
+      dockerfile: Dockerfile.jwt_microservice
+    env_file:
+      - .env
+    ports: '${API_PORT}:8000'
+    volumes:
+      - ./data_raw:/app/data_raw
+    networks:
+      - data-network
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    ports:
+      - '${JUPYTER_PORT}:8888'
+    volumes:
+      - ./data_raw:/home/jovyan/work/data_raw
+      - ./ETL:/home/jovyan/work/ETL
+      - ./data_temp:/home/jovyan/work/data_temp
+      - ./data_processed:/home/jovyan/work/data_processed
+      - ./data_science:/home/jovyan/work/data_science
+      - ./utils:/home/jovyan/work/utils
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+    command: >
+      jupyter lab
+      --ServerApp.root_dir='/home/jovyan/work'
+      --ServerApp.token='${JUPYTER_TOKEN}'
+      --ServerApp.password=''
+      --allow-root
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+    networks:
+      - data-network
+
+networks:
+  data-network:
+    driver: bridge
