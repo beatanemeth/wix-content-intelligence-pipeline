@@ -7,7 +7,8 @@ services:
       dockerfile: Dockerfile.jwt_microservice
     env_file:
       - .env
-    ports: '${API_PORT}:8000'
+    ports:
+      - '${API_PORT}:8000'
     volumes:
       - ./data_raw:/app/data_raw
     networks:
