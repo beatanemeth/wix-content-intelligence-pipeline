@@ -53,3 +53,6 @@ requirements_general.txt
 .gemini/
 assets/
 data_science_brainstorming/
+data_science_anal_strategy/
+presentation/
+data_science/charts/

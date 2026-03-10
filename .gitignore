@@ -47,3 +47,5 @@ data_raw/
 data_temp/
 data_processed/
 data_science_brainstorming/
+data_science/charts/
+presentation/presentation.md
