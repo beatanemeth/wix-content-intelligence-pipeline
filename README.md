@@ -1,21 +1,32 @@
-# Data Engineering & Science Study Project
+# Wix Content Intelligence Pipeline
 
-This repository explores the basic approach of **Data Engineering** and **Data Science** tools and principles. It covers extracting **real-world data** (events, articles, metrics) via API, processing it, and performing analysis.
+This repository explores the basic approach of **Data Engineering** and **Data Science** tools and principles. It covers extracting **real-world data** (events, articles, blog posts) via API, processing it, and performing analysis.
 
-> The basic idea for this project came from the experiences gathered in the [DataKlub](https://dataklub.hu/).
-> For the English speaking community, explore this website [Data36](https://data36.com/).
+### Inspiration
+
+The basic idea for this project came from the experiences gathered in the <a href="https://dataklub.hu/" target="_blank" rel="noopener noreferrer">DataKlub</a>.
+For the English speaking community, explore this website <a href="https://data36.com/" target="_blank" rel="noopener noreferrer">Data36</a>.
 
 ### Main Technologies Used
 
-- Python (FastAPI)
-- Jupyter Notebook, Pandas
-- Docker
-- Gemini CLI
-- Wix Velo API
+- **Extraction:** Python (FastAPI), Wix Velo API
+- **Processing:** Jupyter Notebook, Pandas
+- **Visualization:** Matplotlib, Marp (Presentations)
+- **Infrastructure:** Docker, Makefile
+- **AI & Automation:** Gemini CLI, pre-commit
+
+> 💡 **Looking for the big picture?**
+> Jump straight to the [Data Pipeline Overview](#data-pipeline-overview) to understand the workflow, or view the [Final Presentation](./presentation/presentation.pdf) for a high-level summary of the study's insights.
 
 <br></br>
 
 ## Table of Contents
+
+- [Data Pipeline Overview](#data-pipeline-overview)
+- [Technical Details](#technical-details)
+- [Gemini CLI Integration](#gemini-cli-integration)
+- [Jupyter Cleanup & Git Hygiene](#jupyter-cleanup--git-hygiene)
+- [Appendix](#appendix)
 
 <br></br>
 
@@ -36,10 +47,10 @@ This repository explores the basic approach of **Data Engineering** and **Data S
 ### The Underlying Logic
 
 1. **Source of Truth**: Content managed via _Wix_.
-2. **Raw Extraction:** _FastAPI_ microservice fetches `JSON` data.
+2. **Raw Extraction**: _FastAPI_ microservice fetches `JSON` data. For simplicity, this is a _one-time download_ rather than a continuous ingestion pipeline.
 3. **Structured Transformation**: Cleaning, normalization, and schema validation.
 4. **Interpretation & Insight**: Data analysis.
-5. _Presentation_: Conversion of raw numbers into human-consumable insights.
+5. **Presentation**: Conversion of raw numbers into human-consumable insights.
 
 ### Data Governance & Directory Mapping
 
@@ -206,7 +217,7 @@ docker compose down
 
 <br></br>
 
-## 🤖 Gemini CLI Integration
+## Gemini CLI Integration
 
 This project utilizes the **Gemini CLI** for automating data analysis tasks, generating documentation, and exploring dataset structures.
 
@@ -246,7 +257,7 @@ Instead of dumping everything into one file, the project documentation was consi
 
 <br></br>
 
-## 🧹 Jupyter Cleanup & Git Hygiene
+## Jupyter Cleanup & Git Hygiene
 
 > This project uses `nbstripout` to keep notebook outputs out of version control and a `pre-commit` hook to ensure consistent formatting for all files.
 
@@ -278,3 +289,10 @@ pipx install nbstripout
 ```
 
 **Note on Environment Strategy:** While these tools could be installed in a local `.venv,` `pipx` is more efficient for "meta-tools." This prevents your project environment from becoming cluttered with tools that aren't needed to run the actual code.
+<br></br>
+
+## Appendix
+
+- **Commit Standards**: This project follows [Conventional Commits](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13) to maintain a clear and readable history.
+- **Presentation**: Insights are delivered using [Marp](https://marp.app/), allowing for a "Presentation-as-Code" workflow that aligns with the Markdown-centric nature of the project.
+- **Automation**: A `Makefile` is provided to simplify usual operations.
