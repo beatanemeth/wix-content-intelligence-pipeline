@@ -4,8 +4,8 @@ This repository explores the basic approach of **Data Engineering** and **Data S
 
 ### Inspiration
 
-The basic idea for this project came from the experiences gathered in the <a href="https://dataklub.hu/" target="_blank" rel="noopener noreferrer">DataKlub</a>.
-For the English speaking community, explore this website <a href="https://data36.com/" target="_blank" rel="noopener noreferrer">Data36</a>.
+The basic idea for this project came from the experiences gathered in the <a href="https://dataklub.hu/" target="_blank" rel="noopener noreferrer">DataKlub</a> (_Hungarian_ content).  
+For the _English_ speaking community, explore this platform <a href="https://data36.com/" target="_blank" rel="noopener noreferrer">Data36</a>.
 
 ### Main Technologies Used
 
@@ -15,14 +15,20 @@ For the English speaking community, explore this website <a href="https://data36
 - **Infrastructure:** Docker, Makefile
 - **AI & Automation:** Gemini CLI, pre-commit
 
+ℹ️ This project uses a **local-first** approach with **Docker**, prioritizing **open-source** tools and **data privacy**.
+
 > 💡 **Looking for the big picture?**
-> Jump straight to the [Data Pipeline Overview](#data-pipeline-overview) to understand the workflow, or view the [Final Presentation](./presentation/presentation.pdf) for a high-level summary of the study's insights.
+>
+> - Jump straight to the [Data Pipeline Overview](#data-pipeline-overview) to understand the workflow.
+> - View the [Final Presentation](./presentation/presentation.pdf) for a high-level summary of the study's insights.
 
 <br></br>
 
 ## Table of Contents
 
 - [Data Pipeline Overview](#data-pipeline-overview)
+- [Data Engineering Concepts](#data-engineering-concepts)
+- [Cloud Architecture Mapping](#cloud-architecture-mapping)
 - [Technical Details](#technical-details)
 - [Gemini CLI Integration](#gemini-cli-integration)
 - [Jupyter Cleanup & Git Hygiene](#jupyter-cleanup--git-hygiene)
@@ -32,29 +38,21 @@ For the English speaking community, explore this website <a href="https://data36
 
 ## Data Pipeline Overview
 
-| Stage          | Process / Service                            | Data State                                     |
-| -------------- | -------------------------------------------- | ---------------------------------------------- |
-| Source         | **Wix Velo API**                             | Blog posts, Events, Articles (Wix CMS content) |
-| Extraction     | **FastAPI / Python**<br>JWT Microservice     | `data_raw/`                                    |
-| Transformation | **ETL Layer**<br>(Jupyter Notebook)          | `data_temp/`<br>`data_processed/`              |
-| Analysis       | **Data Science Layer**<br>(Jupyter Notebook) | Analysis outputs<br>Models, insights           |
-| Presentation   | **Presentation**<br>(Matplotlib)             | Charts, reports, dashboards                    |
+| Stage          | Process / Service                            | Data State                                     | Description                                                                                                                            |
+| -------------- | -------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Source         | **Wix Velo API**                             | Blog posts, Events, Articles (Wix CMS content) | Content managed via _Wix_.                                                                                                             |
+| Extraction     | **FastAPI / Python**<br>JWT Microservice     | `data_raw/`                                    | _FastAPI_ microservice fetches `JSON` data. For simplicity, this is a _one-time download_ rather than a continuous ingestion pipeline. |
+| Transformation | **ETL Layer**<br>(Jupyter Notebook)          | `data_temp/`<br>`data_processed/`              | Cleaning, normalization, and schema validation.                                                                                        |
+| Analysis       | **Data Science Layer**<br>(Jupyter Notebook) | Analysis outputs<br>Models, insights           | Data analysis.                                                                                                                         |
+| Presentation   | **Presentation**<br>(Matplotlib)             | Charts, reports, dashboards                    | Conversion of raw numbers into human-consumable insights.                                                                              |
 
 <br></br>
 ![Get Data - Prepare Data - Analyse Data](./assets/data_pipeline_color.png)
 <br></br>
 
-### The Underlying Logic
-
-1. **Source of Truth**: Content managed via _Wix_.
-2. **Raw Extraction**: _FastAPI_ microservice fetches `JSON` data. For simplicity, this is a _one-time download_ rather than a continuous ingestion pipeline.
-3. **Structured Transformation**: Cleaning, normalization, and schema validation.
-4. **Interpretation & Insight**: Data analysis.
-5. **Presentation**: Conversion of raw numbers into human-consumable insights.
-
 ### Data Governance & Directory Mapping
 
-- Data Source — Data was obtained using Wix Velo code during my time as the administrator of the nonprofit organization's [Wix platform](https://www.kiutarakbol.hu/).
+- Data Source — Data was obtained using _Wix Velo_ code during my time as the administrator of the nonprofit organization's <a href="https://www.kiutarakbol.hu/" target="_blank" rel="noopener noreferrer">Wix platform</a>.
 
 - `/data_raw` — Contains the original, unedited dataset. To protect privacy and keep the repo light, this folder is `git-ignored`.
 
@@ -70,9 +68,41 @@ For the English speaking community, explore this website <a href="https://data36
 
 <br></br>
 
-## Technical Details
+## Data Engineering Concepts
 
-This project uses a local-first approach with **Docker**, prioritizing open-source tools and data privacy.
+How does this repository structure translate into industry language?
+
+| Concept                  | Implementation in project                    |
+| ------------------------ | -------------------------------------------- |
+| Data ingestion           | FastAPI microservice extracting Wix CMS data |
+| API authentication       | JWT generation for secure requests           |
+| Raw data storage         | JSON files stored in `data_raw/`             |
+| Data transformation      | Pandas ETL processing                        |
+| Data pipeline layering   | raw → temp → processed data folders          |
+| Reproducible environment | Docker + docker-compose                      |
+| Development workflow     | pre-commit + nbstripout                      |
+
+<br></br>
+
+## Cloud Architecture Mapping
+
+How could the pipeline in this repository be translated into a cloud platform?
+
+- Google Cloud Example
+
+| Local Component            | Cloud Equivalent                              |
+| -------------------------- | --------------------------------------------- |
+| FastAPI extraction service | Cloud Run or Cloud Functions                  |
+| Local JSON storage         | Cloud Storage                                 |
+| Data staging folders       | Cloud Storage buckets (raw / processed zones) |
+| Pandas ETL processing      | Cloud Run job or Dataflow                     |
+| Analytical datasets        | BigQuery                                      |
+| Visual analysis            | Looker Studio                                 |
+| Workflow orchestration     | Cloud Composer or Workflows                   |
+
+<br></br>
+
+## Technical Details
 
 ### 📦 Prerequisites
 
