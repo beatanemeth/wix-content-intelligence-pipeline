@@ -1,7 +1,7 @@
 # .PHONY ensures these run even if a file with the same name exists
 .PHONY: help docker-start docker-stop build-jwt up-jwt build-jup up-jup \
         token-jup down rmi-jwt rmi-jup rmi-all clear clear-all lint
-		
+
 # Default target when you just type 'make'
 help:
 	@echo "Available commands:"
@@ -75,4 +75,3 @@ clear-all:
 
 lint:
 	pre-commit run --all-files
-
