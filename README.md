@@ -12,7 +12,7 @@ For the _English_ speaking community, explore this platform <a href="https://dat
 - **Extraction:** Python (FastAPI), Wix Velo API
 - **Processing:** Jupyter Notebook, Pandas
 - **Visualization:** Matplotlib, Marp (Presentations)
-- **Infrastructure:** Docker, Makefile
+- **Infrastructure:** Linux, Docker, Makefile
 - **AI & Automation:** Gemini CLI, pre-commit
 
 ℹ️ This project uses a **local-first** approach with **Docker**, prioritizing **open-source** tools and **data privacy**.
@@ -70,7 +70,7 @@ For the _English_ speaking community, explore this platform <a href="https://dat
 
 ## Data Engineering Concepts
 
-How does this repository structure translate into industry language?
+Mapping the project's structure to standard Data Engineering terminology.
 
 | Concept                  | Implementation in project                    |
 | ------------------------ | -------------------------------------------- |
@@ -86,7 +86,7 @@ How does this repository structure translate into industry language?
 
 ## Cloud Architecture Mapping
 
-How could the pipeline in this repository be translated into a cloud platform?
+Visualising how the local-first pipeline scales into a cloud-native architecture.
 
 - Google Cloud Example
 
@@ -123,7 +123,8 @@ In the root directory of this project, rename the `.env.example` to `.env`.
 
 Populate the file with your environment keys.
 
-⚠️ **Security Tip:** Never commit your `.env` file to version control.
+> **Security Tip:**  
+> Never commit your `.env` file to version control.
 
 2. ✅ **Build the Docker Image**
 
@@ -237,6 +238,9 @@ Copy the URL above and paste it directly into your web browser. Or hold `Ctrl` (
 
 **VS Code** will now connect to the **Docker container**, and you can **_"just code"_** using the packages installed inside Docker!
 
+> **Note on Persistent Workflow:**  
+> This project is configured to use a fixed `JUPYTER_TOKEN` (defined in the `.env`) and a static workspace root (`/home/jovyan/work`). This configuration is visible in the `command` section of the `jupyter` service in `docker-compose.yml`. Unlike default setups that generate a new token on every start, this approach ensures that the VS Code kernel connection remains stable across container restarts, as the connection URL stays the same.
+
 4. ✅ **Shut Down the Docker Container**
 
 When the data is downloaded, shut down the container with this command:
@@ -249,9 +253,9 @@ docker compose down
 
 ## Gemini CLI Integration
 
-This project utilizes the **Gemini CLI** for automating data analysis tasks, generating documentation, and exploring dataset structures.
+This project utilises the **Gemini CLI** for automating data analysis tasks, generating documentation, and exploring dataset structures.
 
-Prerequisites
+Prerequisites:  
 Make sure you have the **Gemini CLI** installed and configured on your machine.
 
 [Gemini CLI Documentation](https://geminicli.com/docs/)
@@ -262,34 +266,27 @@ Instead of dumping everything into one file, the project documentation was consi
 
 #### GEMINI.md (The Operations Manual)
 
-- **_Purpose_**: The **"How-To"** guide for the AI. It explains how to build, test, and maintain the project.
-- **_Analogy_**: The Project Manager / Jira
-- **_How it works_**: It tells the AI how to interact with the system.
+- **_Purpose:_** The **"How-To"** guide for the AI. It explains how to build, test, and maintain the project.
+- **_Analogy:_** The Project Manager / Jira
+- **_How it works:_** Tells the AI how to interact with the system and maintain the project lifecycle.
 
 #### CONTEXT.md (The Source of Truth)
 
-- **_Purpose_**: The **"Data & Business Domain"** reference. This file should be the "Database Definition and Project Rules" for the AI.
-- **_Analogy_**: The Technical Docs / Schema
-- **_How it works_**:
-  - **Data Dictionary**: Explain what the JSON keys in your raw data/ folder actually mean.
-  - **Schema Definitions**: If you have specific expectations for your data_prepared files, list them.
-  - **API Documentation**: A concise summary of your FastAPI endpoints.
+- **_Purpose:_** The **"Data & Business Domain"** reference. This file should be the "Database Definition and Project Rules" for the AI.
+- **_Analogy:_** The Technical Docs / Schema
+- **_How it works:_** Defines the data dictionary, schema expectations, and API endpoints to provide a grounded source of truth.
 
 #### AGENT.md (The Persona & Standards)
 
-- **_Purpose_**: The **"Guidelines"** for behavior. This is your "**System Prompt**."
-  The Senior Mentor / Pair Programmer
-- **_Analogy_**: The Senior Mentor / Pair Programmer
-- **_How it works_**:
-  - **Role**: Define the AI as an "Experienced Data Science Persona."
-  - **Code Style**: "Prioritize functional programming, use type hints, and always prefer Pandas vectorized operations over loops."
-  - **Constraint Checklist**: "Always verify if a file exists before trying to read it" or "If I ask for a refactor, show me a snippet first, don't rewrite the whole file."
+- **_Purpose:_** The **"Guidelines"** for behavior. This is your "**System Prompt**."
+- **_Analogy:_** The Senior Mentor / Pair Programmer
+- **_How it works:_** Establishes the AI's persona, coding standards, and operational constraints for consistent, high-quality output.
 
 <br></br>
 
 ## Jupyter Cleanup & Git Hygiene
 
-> This project uses `nbstripout` to keep notebook outputs out of version control and a `pre-commit` hook to ensure consistent formatting for all files.
+This project uses `nbstripout` to keep notebook outputs out of version control and a `pre-commit` hook to ensure consistent formatting for all files.
 
 - [PyPI: kynan/nbstripout](https://pypi.org/project/nbstripout/)
 - [GitHub: kynan/nbstripout](https://github.com/kynan/nbstripout)
@@ -308,7 +305,7 @@ pre-commit run --all-files
 
 Because `nbstripout` and `pre-commit` are **_development lifecycle tools_**—not dependencies required by the code inside your Docker containers—they are managed via `pipx`.
 
-`pipx` installs Python CLI tools into **_isolated virtual environments_**, keeping your system Python clean while making the binaries globally accessible in your terminal.
+`pipx` installs Python CLI tools into **_isolated virtual environments_**, keeping the system Python clean while making the binaries globally accessible in the terminal.
 
 [Install pipx](https://pipx.pypa.io/stable/installation/)
 
@@ -318,7 +315,7 @@ pipx install pre-commit
 pipx install nbstripout
 ```
 
-**Note on Environment Strategy:** While these tools could be installed in a local `.venv,` `pipx` is more efficient for "meta-tools." This prevents your project environment from becoming cluttered with tools that aren't needed to run the actual code.
+**Note on Environment Strategy:** While these tools could be installed in a local `.venv,` `pipx` is more efficient for "meta-tools." This prevents the project environment from becoming cluttered with tools that aren't needed to run the actual code.
 <br></br>
 
 ## Appendix
