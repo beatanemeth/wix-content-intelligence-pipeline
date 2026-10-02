@@ -15,9 +15,9 @@ For the _English_ speaking community, explore this platform <a href="https://dat
 - **Infrastructure:** Linux, Docker, Makefile
 - **AI & Automation:** Gemini CLI, pre-commit
 
-ℹ️ This project uses a **local-first** approach with **Docker**, prioritizing **open-source** tools and **data privacy**.
-
-> 💡 **Looking for the big picture?**
+> This project uses a **local-first** approach with **Docker**, prioritizing **open-source** tools and **data privacy**.
+>
+> **Looking for the big picture?**
 >
 > - Jump straight to the [Data Pipeline Overview](#data-pipeline-overview) to understand the workflow.
 > - View the [Final Presentation](./presentation/presentation.pdf) for a high-level summary of the study's insights.
@@ -52,7 +52,7 @@ For the _English_ speaking community, explore this platform <a href="https://dat
 
 ### Data Governance & Directory Mapping
 
-- Data Source — Data was obtained using _Wix Velo_ code during my time as the administrator of the nonprofit organization's <a href="https://www.kiutarakbol.hu/" target="_blank" rel="noopener noreferrer">Wix platform</a>.
+- Data Source — Data was obtained using _Wix Velo_ code during my time as the administrator of the Hungarian nonprofit organization's <a href="https://www.kiutarakbol.hu/" target="_blank" rel="noopener noreferrer">Wix platform</a>.
 
 - `/data_raw` — Contains the original, unedited dataset. To protect privacy and keep the repo light, this folder is `git-ignored`.
 
@@ -104,20 +104,20 @@ Visualising how the local-first pipeline scales into a cloud-native architecture
 
 ## Technical Details
 
-### 📦 Prerequisites
+### Prerequisites
 
 - **[Docker Desktop](https://docs.docker.com/get-docker/)**: For containerizing and running the application.
 - **Python 3.x**: (Optional, for local development/testing outside Docker)
 
-### 🖥️ Operating System Used
+### Operating System Used
 
 - Linux Mint 21.2 (development environment used)
 
-### 🐳 Data Extraction (FastAPI Microservice)
+### Data Extraction (FastAPI Microservice)
 
 This container connects to the **data source (Wix)**, generates a **JWT**, and saves raw **JSON** files locally.
 
-1. ✅ **Configuration** (`.env`)
+1. **Configuration** (`.env`)
 
 In the root directory of this project, rename the `.env.example` to `.env`.
 
@@ -126,7 +126,7 @@ Populate the file with your environment keys.
 > **Security Tip:**  
 > Never commit your `.env` file to version control.
 
-2. ✅ **Build the Docker Image**
+2. **Build the Docker Image**
 
 In your terminal, navigate to your project root (where your `Dockerfile.jwt_microservice` and `.env` are located) and run the following command to build the Docker image:
 
@@ -134,7 +134,7 @@ In your terminal, navigate to your project root (where your `Dockerfile.jwt_micr
 docker compose build jwt_microservice
 ```
 
-3. ✅ **Run the Docker Container**
+3. **Run the Docker Container**
 
 Still in your project root, run the following command to start the Docker container:
 
@@ -145,7 +145,7 @@ docker compose up -d jwt_microservice
 This command will start the container in the background (**_detached mode_**), allowing the terminal to be used for `curl` commands.
 The additional setting for `jwt_microservice `could be found in the `docker-compose.yml` file.
 
-4. ✅ **Call the Endpoints**
+4. **Call the Endpoints**
 
 As the container is running in the detached mode, the same terminal could be used to call the endpoints. This triggers
 
@@ -185,7 +185,7 @@ curl http://127.0.0.1:8000/collections/articles-category
 curl http://127.0.0.1:8000/members
 ```
 
-5. ✅ **Shut Down the Docker Container**
+5. **Shut Down the Docker Container**
 
 This container is supposed to run temporary, just for data fetching, which is one time process in this project. When the data is downloaded, shut down the container with this command:
 
@@ -193,13 +193,13 @@ This container is supposed to run temporary, just for data fetching, which is on
 docker compose down
 ```
 
-### 🔬 Data Cleaning & Analysis
+### Data Cleaning & Analysis
 
 Data preparation and analysis are performed using **Jupyter Notebook** and **Pandas**.
 
 The jupyter container in this project uses the recommended [Docker image](https://hub.docker.com/r/jupyter/datascience-notebook/). The additional packages are included inside `requirements_jupyter.txt` file.
 
-1. ✅ **Build the Docker Image**
+1. **Build the Docker Image**
 
 In your terminal, navigate to your project root (where your `Dockerfile.jupyter` is located) and run the following command to build the Docker image:
 
@@ -207,7 +207,7 @@ In your terminal, navigate to your project root (where your `Dockerfile.jupyter`
 docker compose build jupyter
 ```
 
-2. ✅ **Run the Docker Container**
+2. **Run the Docker Container**
 
 Still in your project root, run the following command to start the Docker container:
 
@@ -215,7 +215,7 @@ Still in your project root, run the following command to start the Docker contai
 docker compose up -d jupyter
 ```
 
-3. ✅ **Using Dockerized Jupyter**
+3. **Using Dockerized Jupyter**
 
 First, retrieve the Jupyter URL (containing the security **token**) from the container logs:
 
@@ -226,10 +226,10 @@ docker compose logs jupyter
 Look for a URL in the terminal output that looks like this:
 `http://127.0.0.1:8888/?token=...`
 
-**Option A: Within the Browser** 🌐
+**Option A: Within the Browser**
 Copy the URL above and paste it directly into your web browser. Or hold `Ctrl` (or `Cmd` on Mac) and click the link directly in the terminal.
 
-**Option B: Within VS Code** 💻
+**Option B: Within VS Code**
 
 1. Open your `.ipynb` file in **VS Code**.
 2. Click **_"Select Kernel"_** in the top right corner.
@@ -241,7 +241,7 @@ Copy the URL above and paste it directly into your web browser. Or hold `Ctrl` (
 > **Note on Persistent Workflow:**  
 > This project is configured to use a fixed `JUPYTER_TOKEN` (defined in the `.env`) and a static workspace root (`/home/jovyan/work`). This configuration is visible in the `command` section of the `jupyter` service in `docker-compose.yml`. Unlike default setups that generate a new token on every start, this approach ensures that the VS Code kernel connection remains stable across container restarts, as the connection URL stays the same.
 
-4. ✅ **Shut Down the Docker Container**
+4. **Shut Down the Docker Container**
 
 When the data is downloaded, shut down the container with this command:
 
