@@ -21,6 +21,7 @@ For the _English_ speaking community, explore this platform <a href="https://dat
 >
 > - Jump straight to the [Data Pipeline Overview](#data-pipeline-overview) to understand the workflow.
 > - View the [Final Presentation](./presentation/presentation.pdf) for a high-level summary of the study's insights.
+> - See the [GCP rebuild](https://github.com/beatanemeth/gcp-content-intelligence-platform_implementation): the same pipeline as a Terraform module on Google Cloud.
 
 <br></br>
 
@@ -47,7 +48,7 @@ For the _English_ speaking community, explore this platform <a href="https://dat
 | Presentation   | **Presentation**<br>(Matplotlib)             | Charts, reports, dashboards                    | Conversion of raw numbers into human-consumable insights.                                                                              |
 
 <br></br>
-![Get Data - Prepare Data - Analyse Data](./assets/data_pipeline_color.png)
+![Extract, then transform and analyse](./assets/data_pipeline_overview.png)
 <br></br>
 
 ### Data Governance & Directory Mapping
@@ -99,6 +100,8 @@ Visualising how the local-first pipeline scales into a cloud-native architecture
 | Analytical datasets        | BigQuery                                      |
 | Visual analysis            | Looker Studio                                 |
 | Workflow orchestration     | Cloud Composer or Workflows                   |
+
+> This mapping is built in the [GCP rebuild](https://github.com/beatanemeth/gcp-content-intelligence-platform_implementation): Cloud Storage, a Cloud Run function and BigQuery, defined with Terraform.
 
 <br></br>
 
